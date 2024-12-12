@@ -1,3 +1,7 @@
-poll_id,poll_type,nb_people,start_date,end_date,folder
-elabe_202407,pt2,1002,2024-07-10,2024-07-11,"polls/elabe_202407"
-ipsos_202411,pt1,100,2024-11-6,2024-11-7,"polls/ipsos_202411"
+poll_id,poll_type,nb_people,start_date,end_date,folder,population
+elabe_202407,pt2,1002,2024-07-10,2024-07-11,"polls/elabe_202407",all
+elabe_202407,pt2,1002,2024-07-10,2024-07-11,"polls/elabe_202407",left
+elabe_202407,pt2,1002,2024-07-10,2024-07-11,"polls/elabe_202407",macron
+elabe_202407,pt2,1002,2024-07-10,2024-07-11,"polls/elabe_202407",absentionists
+elabe_202407,pt2,1002,2024-07-10,2024-07-11,"polls/elabe_202407",far-right
+ipsos_202411,pt1,100,2024-11-6,2024-11-7,"polls/ipsos_202411",all
