@@ -1,14 +1,14 @@
 candidate_id,intention_mention_1,intention_mention_2,intention_mention_3,intention_mention_4,intention_mention_5,intention_mention_6,intention_mention_7,poll_type_id,population
-JB,14,15,19,9,40,5,,pt1,all
+JB,14,15,19,9,40,3,,pt1,all
 MLP,13,15,19,10,39,4,,pt1,all
-EP,6,21,28,19,22,2,,pt1,all
+EP,6,21,28,19,22,4,,pt1,all
 GA,6,17,27,21,25,4,,pt1,all
 RG,4,15,36,20,22,3,,pt1,all
 FR,5,11,37,20,23,4,,pt1,all
 GD,3,13,28,25,28,3,,pt1,all
 FH,3,13,24,23,33,4,,pt1,all
 BR,2,13,40,18,24,3,,pt1,all
-JLM,5,9,15,13,55,5,,pt1,all
+JLM,5,9,15,13,55,3,,pt1,all
 XB,2,12,35,26,21,4,,pt1,all
 FRo,2,11,36,22,26,3,,pt1,all
 BLM,2,11,30,25,28,4,,pt1,all
@@ -16,7 +16,7 @@ MT,4,8,36,20,29,3,,pt1,all
 LW,3,9,34,22,29,3,,pt1,all
 OF,2,10,39,21,25,3,,pt1,all
 BC,1,10,43,22,20,4,,pt1,all
-FB,2,10,36,25,25,3,,pt1,all
+FB,1,10,36,25,25,3,,pt1,all
 YBP,2,8,42,21,24,3,,pt1,all
 EZ,2,7,14,15,58,4,,pt1,all
 DL,2,5,47,20,22,4,,pt1,all
