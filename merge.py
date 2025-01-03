@@ -26,7 +26,9 @@ def add_poll_type_metadata(poll_df, poll_type):
 
 
 def merge_candidate_metadata(poll_df, candidates):
-    return poll_df.merge(candidates, on="candidate_id", how="left")
+    # create a new column with the name and surname of the candidate
+    candidates["candidate"] = candidates["name"] + " " + candidates["surname"]
+    return poll_df.merge(candidates, on="candidate", how="left")
 
 
 def process_polls(polls, poll_types, candidates, population):

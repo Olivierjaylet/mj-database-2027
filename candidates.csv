@@ -1,4 +1,4 @@
-candidate_id,prenom,nom,parti,annonce_candidature,retrait_candidature,second_tour
+candidate_id,name,surname,parti,annonce_candidature,retrait_candidature,second_round
 EP,Edouard,Philippe,,,,
 JB,Jordan,Bardella,Rassemblement National,,,
 MLP,Marine,Le Pen,Rassemblement National,,,

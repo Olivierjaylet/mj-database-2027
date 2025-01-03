@@ -40,7 +40,7 @@ def process_polls(polls):
             assert sum_mentions == 100, (
                 f"Sum of intention mentions in row {index} is not 100, \n"
                 f" for poll {poll['poll_id']}, \n"
-                f"candidate {row['candidate_id']}, \n"
+                f"candidate {row['candidate']}, \n"
                 f"population {poll['population']}"
             )
 
