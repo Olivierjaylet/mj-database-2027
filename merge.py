@@ -28,13 +28,16 @@ def add_poll_type_metadata(poll_df, poll_type):
 def merge_candidate_metadata(poll_df, candidates):
     # create a new column with the name and surname of the candidate
     candidates["candidate"] = candidates["name"] + " " + candidates["surname"]
+    #  keep only the candidate_id in the poll_df
+    candidates = candidates[candidates["candidate_id"].isin(poll_df["candidate_id"].unique())]
     return poll_df.merge(candidates, on="candidate_id", how="right")
 
 
 def process_polls(polls, poll_types, candidates, population):
     merged_df = pd.DataFrame()
 
-    for _, poll in polls.iterrows():
+    for i, poll in polls.iterrows():
+        print(i)
         poll_file_path = get_poll_file_path(poll, population)
         poll_df = load_data(poll_file_path)
         poll_type_id = poll_df["poll_type_id"].unique()[0]
@@ -54,6 +57,7 @@ def main():
     POPULATIONS = ["all", "left", "farright", "macron", "absentionists"]
 
     for POPULATION in POPULATIONS:
+        print(POPULATION)
         OUTPUT_FILE = f"mj2027_{POPULATION}.csv" if POPULATION != "all" else "mj2027.csv"
 
         polls = load_data(POLLS_FILE)
