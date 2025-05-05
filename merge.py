@@ -37,7 +37,7 @@ def process_polls(polls, poll_types, candidates, population):
     merged_df = pd.DataFrame()
 
     for i, poll in polls.iterrows():
-        print(i)
+        print(poll)
         poll_file_path = get_poll_file_path(poll, population)
         poll_df = load_data(poll_file_path)
         poll_type_id = poll_df["poll_type_id"].unique()[0]
@@ -60,6 +60,7 @@ def main():
         print(POPULATION)
         OUTPUT_FILE = f"mj2027_{POPULATION}.csv" if POPULATION != "all" else "mj2027.csv"
 
+        print(POLLS_FILE)
         polls = load_data(POLLS_FILE)
         polls = polls[polls["population"] == POPULATION]
 
