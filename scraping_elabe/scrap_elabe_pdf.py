@@ -5,12 +5,12 @@ import pandas as pd  # Import the pandas library
 
 # print in which directory the script is running
 print(f"Script is running in directory: {os.getcwd()}")
-date_suffix = "_202505"
+date_suffix = "_202502"
 # POPULATION = "all"  # Set the population variable to "all"
-# POPULATION = "macron"  # Set the population variable to "all"
 # POPULATION = "left"  # Set the population variable to "all"
-POPULATION = "farright"  # Set the population variable to "all"
-# POPULATION = "absentionists"  # Set the population variable to "all"
+# POPULATION = "macron"  # Set the population variable to "all"
+# POPULATION = "farright"  # Set the population variable to "all"
+POPULATION = "absentionists"  # Set the population variable to "all"
 
 # Provided list of names as a string
 # load from names.txt
