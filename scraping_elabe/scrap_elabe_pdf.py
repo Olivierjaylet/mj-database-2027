@@ -5,7 +5,7 @@ import pandas as pd  # Import the pandas library
 
 # print in which directory the script is running
 print(f"Script is running in directory: {os.getcwd()}")
-date_suffix = "_202502"
+date_suffix = "_202501"
 # POPULATION = "all"  # Set the population variable to "all"
 # POPULATION = "left"  # Set the population variable to "all"
 # POPULATION = "macron"  # Set the population variable to "all"
@@ -15,7 +15,7 @@ POPULATION = "absentionists"  # Set the population variable to "all"
 # Provided list of names as a string
 # load from names.txt
 try:
-    names_string = io.open("scraping_elabe/names.txt", "r", encoding="utf-8").read()
+    names_string = io.open("names.txt", "r", encoding="utf-8").read()
 except FileNotFoundError:
     print("Error: names.txt not found in scraping_elabe directory.")
     exit()
@@ -23,7 +23,7 @@ except FileNotFoundError:
 # Provided concatenated table data as a string
 # load from table.txt
 try:
-    table_string = io.open("scraping_elabe/table.txt", "r", encoding="utf-8").read()
+    table_string = io.open("table.txt", "r", encoding="utf-8").read()
 except FileNotFoundError:
     print("Error: table.txt not found in scraping_elabe directory.")
     exit()
@@ -35,12 +35,12 @@ names_list = [name.strip() for name in names_string.strip().split("\n")]
 num_names = len(names_list)
 
 # Step 1.2: Load the zeros, skipped in the table
-df_zeros = pd.read_csv("scraping_elabe/zeros.csv", sep=",", encoding="utf-8")
+df_zeros = pd.read_csv("zeros.csv", sep=",", encoding="utf-8")
 
 # --- Step 2: Read and Process candidate.csv Data using pandas ---
 # Read the candidate.csv file into a pandas DataFrame
 try:
-    candidate_df = pd.read_csv("candidates.csv")
+    candidate_df = pd.read_csv("../candidates.csv")
 except FileNotFoundError:
     print("Error: candidate.csv not found. Please make sure the file is in the correct directory.")
     exit()  # Exit if the file is not found
@@ -193,7 +193,7 @@ for row in output_data_rows:
 
 
 # --- Step 5: Write to CSV File ---
-output_filename = f"scraping_elabe/elabe{date_suffix}_{POPULATION}.csv"
+output_filename = f"elabe{date_suffix}_{POPULATION}.csv"
 
 # Ensure the output directory exists
 output_dir = os.path.dirname(output_filename)
