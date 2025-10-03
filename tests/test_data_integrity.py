@@ -2,7 +2,7 @@ import pandas as pd
 
 def test_candidates_no_duplicate_acronyms():
     df = pd.read_csv('candidates.csv')
-    duplicates = df[df.duplicated('acronyme', 
+    duplicates = df[df.duplicated('candidate_id', 
                                   keep=False
                                   )]
     
