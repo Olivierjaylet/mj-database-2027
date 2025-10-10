@@ -1,0 +1,39 @@
+name: Validate Poll Data
+
+on:
+  pull_request:
+    paths:
+      - 'candidates.csv'
+      - 'polls.csv'
+      - 'poll_types.csv'
+      - 'polls/**/*.csv'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          pip install pytest pandas
+          
+      - name: Run validation tests
+        run: pytest tests/ -v
+        
+      - name: Comment PR results
+        uses: actions/github-script@v6
+        if: failure()
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ La validation des données a échoué. Consultez les logs pour plus de détails.'
+            })
