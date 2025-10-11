@@ -34,7 +34,6 @@ EXPECTED_COLUMNS_DIC = {
     ]
 }
 
-
 # Fixtures
 @pytest.fixture
 def temp_env():
