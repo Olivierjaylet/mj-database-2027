@@ -2,6 +2,7 @@ name: Validate Poll Data
 
 on:
   pull_request:
+    branches: [main]
     paths:
       - 'candidates.csv'
       - 'polls.csv'
@@ -21,7 +22,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          pip install pytest pandas
+          pip install -r requirements_pytests.txt
           
       - name: Run validation tests
         run: pytest tests/ -v
