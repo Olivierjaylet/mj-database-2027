@@ -20,7 +20,7 @@ EXPECTED_COLUMNS_DIC = {
         'candidate_id', 'intention_mention_1', 'intention_mention_2', 'intention_mention_3',
         'intention_mention_4', 'intention_mention_5', 'intention_mention_6', 'intention_mention_7',
         'poll_type_id', 'population', 'poll_id', 'poll_type', 'nb_people', 'start_date',
-        'end_date', 'folder', 'id', 'institut', 'commanditaire', 'mention1', 'mention2',
+        'end_date', 'folder', 'population', 'id', 'institut', 'commanditaire', 'mention1', 'mention2',
         'mention3', 'mention4', 'mention5', 'mention6', 'mention7', 'nombre_mentions',
         'question', 'name', 'surname', 'parti', 'annonce_candidature', 'retrait_candidature',
         'second_round', 'candidate'
