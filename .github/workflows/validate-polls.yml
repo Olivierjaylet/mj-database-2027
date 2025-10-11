@@ -8,24 +8,29 @@ on:
       - 'polls.csv'
       - 'poll_types.csv'
       - 'polls/**/*.csv'
-
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test_file: [
+          "test_poll_format.py",
+          "test_file_structure.py",
+          "test_data_integrity.py"
+        ]
     steps:
       - uses: actions/checkout@v3
-      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-          
       - name: Install dependencies
         run: |
-          pip install -r requirements_pytests.txt
-          
-      - name: Run validation tests
-        run: pytest tests/ -v
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run test
+        run: |
+          pytest tests/${{ matrix.test_file }} -v
         
       - name: Comment PR results
         uses: actions/github-script@v6
