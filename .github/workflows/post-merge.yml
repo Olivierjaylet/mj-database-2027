@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements_pytests.txt  # Ajout de pytest pour les tests
+          pip install -r requirements_pytests.txt 
 
       - name: Run merge.py
         id: merge
