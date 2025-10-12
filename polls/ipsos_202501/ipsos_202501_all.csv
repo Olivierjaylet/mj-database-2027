@@ -1,4 +1,4 @@
-candidate_id,intention_mention_1,intention_mention_2,intention_mention_3,intention_mention_4,intention_mention_5,intention_mention_6,intention_mention_7,poll_type_id, population
+candidate_id,intention_mention_1,intention_mention_2,intention_mention_3,intention_mention_4,intention_mention_5,intention_mention_6,intention_mention_7,poll_type_id,population
 MLP,16,18,16,10,38,2,,pt1,all
 JB,16,17,18,10,37,2,,pt1,all
 EP,7,23,27,20,21,2,,pt1,all
