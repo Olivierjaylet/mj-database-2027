@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements_pytests.txt
       - name: Run test
         run: |
-          pytest tests/${{ matrix.test_file }} -v
+          pytest tests/${{ matrix.test_file }} -v --color=yes
         
       - name: Comment PR results
         uses: actions/github-script@v6
