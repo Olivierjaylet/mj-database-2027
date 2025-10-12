@@ -12,12 +12,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        test_file: [
-          "test_poll_format.py",
-          "test_file_structure.py",
-          "test_data_integrity.py"
-        ]
+      matrix: 
+        test_file:
+          - "test_poll_format.py"
+          - "test_file_structure.py"
+          - "test_data_integrity.py"
     steps:
       - uses: actions/checkout@v3
       - name: Setup Python
@@ -27,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements_pytests.txt
       - name: Run test
         run: |
           pytest tests/${{ matrix.test_file }} -v
