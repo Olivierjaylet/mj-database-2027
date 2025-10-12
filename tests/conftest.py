@@ -101,7 +101,4 @@ def verify_columns(df,
 
 def get_expected_columns(file_name):
     """Retourne la liste des colonnes attendues pour un fichier donné"""
-    if file_name == 'mj2027.csv':
-        return EXPECTED_COLUMNS_DIC['full']
-    else:
-        return EXPECTED_COLUMNS_DIC['restricted']
+    return EXPECTED_COLUMNS_DIC["full"]
