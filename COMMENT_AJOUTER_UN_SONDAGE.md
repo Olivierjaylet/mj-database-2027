@@ -137,7 +137,7 @@ JB,12,18,20,25,20,5,,pt3,all
 harris_202502,pt3,1200,2025-02-15,2025-02-17,polls/harris_202502,all
 ```
 
-### 8. Validation
+### 8. Validation (Facultatif)
 
 Après avoir ajouté votre sondage :
 
@@ -146,19 +146,22 @@ Après avoir ajouté votre sondage :
 3. Assurez-vous que les pourcentages sont cohérents
 4. Testez le script `merge.py` pour vous assurer qu'il fonctionne correctement
 
-### 9. Bonnes pratiques
+### 9. Vous pouvez ouvrir une Pull Request (PR)
+Votre travail est prêt à être ajouté au dépôt principal et autres sondages. La CI (Github Action) se chargera d'executer 8.
+
+### 10. Bonnes pratiques
 
 - **Nommage cohérent :** Respectez le format `institut_AAAAMM`
 - **Données complètes :** N'ajoutez que des candidats avec des données réelles
 - **Vérification :** Double-vérifiez les pourcentages et les totaux
 - **Documentation :** Ajoutez des commentaires si nécessaire sur les spécificités du sondage
 
-### 10. Ressources
+### 11. Ressources
 
-- `merge.py` : Script pour fusionner les données
 - `candidates.csv` : Liste des candidats référencés
 - `poll_types.csv` : Types de sondages supportés
 - `polls.csv` : Index de tous les sondages
+- `merge.py` : Script pour fusionner les données
 
 ## Questions fréquentes
 
