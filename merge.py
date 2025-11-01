@@ -29,7 +29,9 @@ def merge_candidate_metadata(poll_df, candidates):
     # create a new column with the name and surname of the candidate
     candidates["candidate"] = candidates["name"] + " " + candidates["surname"]
     #  keep only the candidate_id in the poll_df
-    candidates = candidates[candidates["candidate_id"].isin(poll_df["candidate_id"].unique())]
+    candidates = candidates[
+        candidates["candidate_id"].isin(poll_df["candidate_id"].unique())
+    ]
     return poll_df.merge(candidates, on="candidate_id", how="right")
 
 
@@ -58,7 +60,9 @@ def main():
 
     for POPULATION in POPULATIONS:
         print(POPULATION)
-        OUTPUT_FILE = f"mj2027_{POPULATION}.csv" if POPULATION != "all" else "mj2027.csv"
+        OUTPUT_FILE = (
+            f"mj2027_{POPULATION}.csv" if POPULATION != "all" else "mj2027.csv"
+        )
 
         print(POLLS_FILE)
         polls = load_data(POLLS_FILE)

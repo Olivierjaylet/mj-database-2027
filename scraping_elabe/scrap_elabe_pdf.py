@@ -42,7 +42,9 @@ df_zeros = pd.read_csv("zeros.csv", sep=",", encoding="utf-8")
 try:
     candidate_df = pd.read_csv("../candidates.csv")
 except FileNotFoundError:
-    print("Error: candidate.csv not found. Please make sure the file is in the correct directory.")
+    print(
+        "Error: candidate.csv not found. Please make sure the file is in the correct directory."
+    )
     exit()  # Exit if the file is not found
 
 # Create a dictionary to map full names (or name + surname) to candidate_id
@@ -115,7 +117,9 @@ for i in range(num_names):
             try:
                 current_row.append(table_values[flat_index])
             except IndexError:
-                print(f"Warning: Index {flat_index} out of bounds for table_values. Table data may be incomplete.")
+                print(
+                    f"Warning: Index {flat_index} out of bounds for table_values. Table data may be incomplete."
+                )
                 # Append a placeholder or handle as needed if data is missing
                 current_row.append("")  # Append empty string for missing data
 
@@ -183,7 +187,9 @@ for i in range(num_names):
 # chek sum of intention_mention_1 to intention_mention_7 (nan are zeros)
 for row in output_data_rows:
     # Convert the intention mentions to float and sum them
-    intention_mentions = [float(x) if x else 0 for x in row[1:6]]  # Only the first 5 columns
+    intention_mentions = [
+        float(x) if x else 0 for x in row[1:6]
+    ]  # Only the first 5 columns
     total_intentions = sum(intention_mentions)
     if total_intentions != 100:
         print(
