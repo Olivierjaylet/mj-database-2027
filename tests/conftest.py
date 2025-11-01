@@ -98,9 +98,7 @@ def temp_env():
 @pytest.fixture
 def merged_env(temp_env):
     """Fixture pour un environnement où merge.py a été exécuté"""
-    result = subprocess.run(
-        ["python", "merge.py"], cwd=temp_env.name, capture_output=True, text=True
-    )
+    result = subprocess.run(["python", "merge.py"], cwd=temp_env.name, capture_output=True, text=True)
     assert result.returncode == 0, f"merge.py a échoué: {result.stderr}"
     return temp_env
 
@@ -109,16 +107,12 @@ def merged_env(temp_env):
 def verify_files_exist(temp_dir, expected_files=EXPECTED_FILES):
     """Vérifie que les fichiers attendus existent dans le dossier temporaire"""
     for file in expected_files:
-        assert os.path.exists(
-            os.path.join(temp_dir.name, file)
-        ), f"Fichier manquant: {file}"
+        assert os.path.exists(os.path.join(temp_dir.name, file)), f"Fichier manquant: {file}"
 
 
 def load_valid_candidates(temp_dir):
     """Charge la liste des candidats valides depuis candidates.csv"""
-    return pd.read_csv(os.path.join(temp_dir.name, "candidates.csv"))[
-        "candidate_id"
-    ].tolist()
+    return pd.read_csv(os.path.join(temp_dir.name, "candidates.csv"))["candidate_id"].tolist()
 
 
 def verify_file_not_empty(file_path, file_name):
@@ -136,21 +130,15 @@ def verify_no_duplicates(df, file_name):
 def verify_candidate_references(df, candidates, file_name):
     """Vérifie que toutes les références aux candidats sont valides"""
     for candidate_id in df["candidate_id"]:
-        assert (
-            candidate_id in candidates
-        ), f"Candidat invalide '{candidate_id}' détecté dans {file_name}"
+        assert candidate_id in candidates, f"Candidat invalide '{candidate_id}' détecté dans {file_name}"
 
 
 def verify_columns(df, expected_columns, file_path):
     """Vérifie que toutes les colonnes attendues existent et qu'il n'y a pas de colonnes supplémentaires"""
     missing_columns = set(expected_columns) - set(df.columns)
     extra_columns = set(df.columns) - set(expected_columns)
-    assert (
-        not missing_columns
-    ), f"Colonnes manquantes dans {file_path}: {sorted(missing_columns)}"
-    assert (
-        not extra_columns
-    ), f"Colonnes supplémentaires dans {file_path}: {sorted(extra_columns)}"
+    assert not missing_columns, f"Colonnes manquantes dans {file_path}: {sorted(missing_columns)}"
+    assert not extra_columns, f"Colonnes supplémentaires dans {file_path}: {sorted(extra_columns)}"
 
 
 def get_expected_columns(file_name):
