@@ -12,7 +12,7 @@ Installez-les avec :
 pip install pandas pdfminer.six
 ```
 ## Arborescence fichiers
- 
+ ```
 MJ-DATABASE-2027/
 │
 ├── mining_IFOP/
@@ -30,7 +30,7 @@ MJ-DATABASE-2027/
 ├── polls/
 │
 └── pyproject.toml
-
+```
 
 ## Exécution
 
