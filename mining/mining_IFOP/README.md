@@ -55,8 +55,6 @@ python ifop_build.py "mining_IFOP/pdfs/[Nom du PDF].pdf" AAAAMM [options]
 | `--prefix` ou `-x`      | Préfixe pour le fichier de sortie (défaut : `ifop`) |
 | `--population` ou `-P`  | Population cible (défaut : `all`)                   |
 
-
-
 ## Sortie
 Les fichiers CSV seront générés dans :
 

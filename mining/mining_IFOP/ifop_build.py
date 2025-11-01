@@ -2,8 +2,8 @@
 
 import pathlib
 
-from miner import Miner
-from builder import Builder
+from mining.mining_IFOP.miner import Miner
+from mining.mining_IFOP.builder import Builder
 
 _SCRIPT_DIR = pathlib.Path(__file__).parent.resolve()
 _POLL_DIR = _SCRIPT_DIR.parent / "polls"
@@ -14,12 +14,8 @@ if __name__ == "__main__":
     import pathlib
 
     argparser = argparse.ArgumentParser(description="Traitement des fichiers PDF IFOP")
-    argparser.add_argument(
-        "pdf_path", type=pathlib.Path, help="Chemin vers le fichier PDF à traiter"
-    )
-    argparser.add_argument(
-        "poll_date", type=str, help="Date du sondage (format AAAAMM)"
-    )
+    argparser.add_argument("pdf_path", type=pathlib.Path, help="Chemin vers le fichier PDF à traiter")
+    argparser.add_argument("poll_date", type=str, help="Date du sondage (format AAAAMM)")
 
     argparser.add_argument(
         "--candidates-path",
@@ -51,12 +47,8 @@ if __name__ == "__main__":
         help="Population cible (par défaut : all)",
     )
 
-    argparser.add_argument(
-        "--pages", "-p", type=int, nargs="+", default=None, help="Pages à analyser"
-    )
-    argparser.add_argument(
-        "--score-number", type=int, default=7, help="Nombre de mentions (par défaut: 7)"
-    )
+    argparser.add_argument("--pages", "-p", type=int, nargs="+", default=None, help="Pages à analyser")
+    argparser.add_argument("--score-number", type=int, default=7, help="Nombre de mentions (par défaut: 7)")
 
     argparser.add_argument(
         "--overwrite",

@@ -2,15 +2,13 @@
 
 import pathlib
 from typing import List
-from poll import CandidatePollInterface
+from mining.mining_IFOP.poll import CandidatePollInterface
 
-from manager import Manager
+from mining.mining_IFOP.manager import Manager
 
 
 class Builder:
-    def __init__(
-        self, path_to_candidates: pathlib.Path, results: List[CandidatePollInterface]
-    ):
+    def __init__(self, path_to_candidates: pathlib.Path, results: List[CandidatePollInterface]):
         self.path_to_candidates = path_to_candidates
         self.manager = Manager()
         self.manager.load_csv(self.path_to_candidates)

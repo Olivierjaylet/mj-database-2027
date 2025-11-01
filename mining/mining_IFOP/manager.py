@@ -2,7 +2,7 @@
 
 import pathlib
 from typing import Dict
-from candidate import Candidate
+from mining.mining_IFOP.candidate import Candidate
 
 
 class Manager:
@@ -19,9 +19,7 @@ class Manager:
         for line in lines[1:]:  # Skip header
             parts = line.strip().split(",")
             if len(parts) >= 3:
-                candidate = Candidate(
-                    id=parts[0], first_name=parts[1].strip(), last_name=parts[2].strip()
-                )
+                candidate = Candidate(id=parts[0], first_name=parts[1].strip(), last_name=parts[2].strip())
                 first_name = candidate.first_name.lower()
                 last_name = candidate.last_name.lower()
                 self.candidates_first[first_name + " " + last_name] = candidate

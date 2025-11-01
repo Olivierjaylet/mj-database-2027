@@ -127,6 +127,3 @@ dmypy.json
 
 # bac à sable
 sandbox/
-scraping_elabe/names.txt
-
-scraping_elabe/table.txt
