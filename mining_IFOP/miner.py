@@ -12,14 +12,17 @@ from poll import CandidatePollInterface
 from pdfminer.high_level import extract_pages
 from pdfminer.layout import LTTextContainer
 
+
 class InconsistentScoreSum(ValueError):
     pass
+
 
 class TextElement:
     def __init__(self, container: LTTextContainer):
         self.text = container.get_text().strip()
         self.x = container.x0
         self.y = container.y0
+
 
 class Line(CandidatePollInterface):
     def __init__(self, name: str, y: float):
@@ -38,18 +41,18 @@ class Line(CandidatePollInterface):
 
     def get_name(self) -> str:
         return self.name
-    
+
     def get_scores(self) -> List[str]:
         return self.scores
 
     def add_score(self, score: TextElement):
-        score.text = score.text.replace('%', '').strip()
+        score.text = score.text.replace("%", "").strip()
         self._scores.append(score)
 
     def check(self, score_number: int, totals: Tuple[str, str]):
         if not self._scores:
             raise ValueError("Une ligne doit avoir des scores")
-        
+
         if not totals:
             raise ValueError("Totaux manquants pour la vérification")
 
@@ -59,12 +62,14 @@ class Line(CandidatePollInterface):
         last_score = self._scores[-1]
 
         # Si le dernier score est sur deux lignes => abstentions
-        if last_score.text.count('\n') > 0:
-            last_score_parts = last_score.text.strip().split('\n')
+        if last_score.text.count("\n") > 0:
+            last_score_parts = last_score.text.strip().split("\n")
 
             if len(last_score_parts) > 2:
-                raise ValueError(f"Les abstentions représentent au plus 2 catégories, found {len(last_score_parts)}")
-            
+                raise ValueError(
+                    f"Les abstentions représentent au plus 2 catégories, found {len(last_score_parts)}"
+                )
+
             # On modifie le texte du dernier score pour ne garder que la première partie
             last_score.text = last_score_parts[0].strip()
 
@@ -78,7 +83,9 @@ class Line(CandidatePollInterface):
         # On complète si nécessaire
         actual_score_number = len(self._scores)
         if actual_score_number > score_number:
-            raise ValueError(f"Le nombre de mentions pour {self.name} dépasse le nombre attendu ({score_number})")
+            raise ValueError(
+                f"Le nombre de mentions pour {self.name} dépasse le nombre attendu ({score_number})"
+            )
 
         self.scores = [s.text for s in self._scores]
 
@@ -101,15 +108,20 @@ class Line(CandidatePollInterface):
 
         actual_favorable = self.favorable_score
         if favorable != actual_favorable:
-            raise ValueError(f"Score d'opinion favorable incorrect pour {self.name} : attendu {favorable}, trouvé {actual_favorable}")
+            raise ValueError(
+                f"Score d'opinion favorable incorrect pour {self.name} : attendu {favorable}, trouvé {actual_favorable}"
+            )
 
         actual_unfavorable = self.unfavorable_score
         if unfavorable != actual_unfavorable:
-            raise ValueError(f"Score d'opinion défavorable incorrect pour {self.name} : attendu {unfavorable}, trouvé {actual_unfavorable}")
+            raise ValueError(
+                f"Score d'opinion défavorable incorrect pour {self.name} : attendu {unfavorable}, trouvé {actual_unfavorable}"
+            )
 
     def __str__(self):
         name = self.name
         return f"{name} : {', '.join([s.text for s in self._scores])} => {self.favorable_score}, {self.unfavorable_score}"
+
 
 class PollPage:
     def __init__(self):
@@ -151,7 +163,7 @@ class PollPage:
             name = self.names[i]
             line = Line(name.text, name.y)
 
-            next_name = self.names[i+1] if i + 1 < line_count else None
+            next_name = self.names[i + 1] if i + 1 < line_count else None
 
             # On cherche les scores positionnés sur la même ligne
             while True:
@@ -181,7 +193,7 @@ class PollPage:
             self.lines.append(line)
 
         # On classe les lignes par position verticale (y)
-        self.lines.sort(key=lambda l: l.y, reverse=True)   
+        self.lines.sort(key=lambda l: l.y, reverse=True)
 
     def _organize_totals(self) -> List[Tuple[str, str]]:
         """Organisation des totaux collectés. Renvoie un tuple de totaux (favorable, défavorable)"""
@@ -193,41 +205,54 @@ class PollPage:
         block_count = len(self.total_blocks)
 
         if single_count > 0 and block_count > 0:
-            raise ValueError("La prise en charge de totaux en blocs et individuels n'est pas encore assurée")
+            raise ValueError(
+                "La prise en charge de totaux en blocs et individuels n'est pas encore assurée"
+            )
 
         # Les totaux sont groupés en un seul bloc ?
         if self.total_blocks:
-            if block_count == 1 and self.total_blocks[0].text.count('\n') == line_count - 1:
+            if (
+                block_count == 1
+                and self.total_blocks[0].text.count("\n") == line_count - 1
+            ):
                 # Un seul bloc de totaux
-                splitted_blocks = self.total_blocks[0].text.split('\n')
+                splitted_blocks = self.total_blocks[0].text.split("\n")
                 for block in splitted_blocks:
-                    total_parts = block.split('%')
+                    total_parts = block.split("%")
                     results.append((total_parts[0].strip(), total_parts[1].strip()))
 
-            elif block_count == line_count: # Autant de blocs que de candidats (totaux groupés par 2)
+            elif (
+                block_count == line_count
+            ):  # Autant de blocs que de candidats (totaux groupés par 2)
                 self.total_blocks.sort(key=lambda t: t.y, reverse=True)
-                
-                for total_block in self.total_blocks:
-                    total_parts = total_block.text.split('%')
-                    results.append((
-                        total_parts[0].strip(),
-                        total_parts[1].strip(),
-                    ))
-                
-            else:
-                raise NotImplementedError("Plusieurs blocs de totaux non supportés pour l'instant")
 
-        elif self.totals: # Totaux individuels
+                for total_block in self.total_blocks:
+                    total_parts = total_block.text.split("%")
+                    results.append(
+                        (
+                            total_parts[0].strip(),
+                            total_parts[1].strip(),
+                        )
+                    )
+
+            else:
+                raise NotImplementedError(
+                    "Plusieurs blocs de totaux non supportés pour l'instant"
+                )
+
+        elif self.totals:  # Totaux individuels
             # On s'attend à avoir deux fois plus de totaux que de candidats.
             if single_count != line_count * 2:
-                raise ValueError(f"{line_count} noms, mais {single_count} totaux trouvés")
-            
+                raise ValueError(
+                    f"{line_count} noms, mais {single_count} totaux trouvés"
+                )
+
             self.totals.sort(key=lambda t: t.y, reverse=True)
             while self.totals:
                 first = self.totals.pop(0)
-                first.text = first.text.replace('%', '').strip()
+                first.text = first.text.replace("%", "").strip()
                 second = self.totals.pop(0)
-                second.text = second.text.replace('%', '').strip()
+                second.text = second.text.replace("%", "").strip()
 
                 if first.x < second.x:
                     results.append((first.text, second.text))
@@ -236,11 +261,14 @@ class PollPage:
 
         return results
 
+
 class Miner:
     def __init__(self):
         self.pages: List[PollPage] = []
 
-    def load_pdf(self, pdf_path: pathlib.Path, score_number: int, pages: List[int] = None):
+    def load_pdf(
+        self, pdf_path: pathlib.Path, score_number: int, pages: List[int] = None
+    ):
         # Parfois les totaux sont groupés en un bloc
         # Note : on peut distinguer les totaux des scores car les totaux ont des espaces entre les pourcentages
         total_block_regex = re.compile(r"^\d{1,2} +% +\d{1,2} +% *$", re.MULTILINE)
@@ -281,14 +309,10 @@ class Miner:
             poll_page.organize(score_number)
 
             self.pages.append(poll_page)
-    
+
     def get_results(self) -> List[CandidatePollInterface]:
         results = []
         for page in self.pages:
             for line in page.lines:
                 results.append(line)
         return results
-
-
-    
-

@@ -4,6 +4,7 @@ import pathlib
 from typing import Dict
 from candidate import Candidate
 
+
 class Manager:
     def __init__(self):
         # Prénom d'abord
@@ -12,13 +13,15 @@ class Manager:
         self.candidates_last: Dict[str, Candidate] = {}
 
     def load_csv(self, filepath: pathlib.Path):
-        with filepath.open('r', encoding='utf-8') as f:
+        with filepath.open("r", encoding="utf-8") as f:
             lines = f.readlines()
 
         for line in lines[1:]:  # Skip header
-            parts = line.strip().split(',')
+            parts = line.strip().split(",")
             if len(parts) >= 3:
-                candidate = Candidate(id=parts[0], first_name=parts[1].strip(), last_name=parts[2].strip())
+                candidate = Candidate(
+                    id=parts[0], first_name=parts[1].strip(), last_name=parts[2].strip()
+                )
                 first_name = candidate.first_name.lower()
                 last_name = candidate.last_name.lower()
                 self.candidates_first[first_name + " " + last_name] = candidate

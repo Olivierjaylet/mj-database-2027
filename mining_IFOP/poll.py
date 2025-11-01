@@ -3,6 +3,7 @@
 import abc
 from typing import List
 
+
 class CandidatePollInterface(abc.ABC):
     @abc.abstractmethod
     def get_name(self) -> str:
