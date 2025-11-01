@@ -17,7 +17,7 @@ POPULATION = "absentionists"  # Set the population variable to "all"
 try:
     names_string = io.open("names.txt", "r", encoding="utf-8").read()
 except FileNotFoundError:
-    print("Error: names.txt not found in scraping_elabe directory.")
+    print("Error: names.txt not found in mining_ELABE directory.")
     exit()
 
 # Provided concatenated table data as a string
@@ -25,7 +25,7 @@ except FileNotFoundError:
 try:
     table_string = io.open("table.txt", "r", encoding="utf-8").read()
 except FileNotFoundError:
-    print("Error: table.txt not found in scraping_elabe directory.")
+    print("Error: table.txt not found in mining_ELABE directory.")
     exit()
 
 
