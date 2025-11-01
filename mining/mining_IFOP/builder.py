@@ -2,9 +2,9 @@
 
 import pathlib
 from typing import List
-from mining.mining_IFOP.poll import CandidatePollInterface
+from poll import CandidatePollInterface
 
-from mining.mining_IFOP.manager import Manager
+from manager import Manager
 
 
 class Builder:
